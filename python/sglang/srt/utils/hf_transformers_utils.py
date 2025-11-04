@@ -43,6 +43,7 @@ from sglang.srt.configs import (
     DotsVLMConfig,
     ExaoneConfig,
     FalconH1Config,
+    JetNemotronConfig,
     KimiVLConfig,
     LongcatFlashConfig,
     MultiModalityConfig,
@@ -71,6 +72,7 @@ _CONFIG_REGISTRY: Dict[str, Type[PretrainedConfig]] = {
     DotsVLMConfig.model_type: DotsVLMConfig,
     DotsOCRConfig.model_type: DotsOCRConfig,
     NemotronHConfig.model_type: NemotronHConfig,
+    JetNemotronConfig.model_type: JetNemotronConfig,
 }
 
 for name, cls in _CONFIG_REGISTRY.items():

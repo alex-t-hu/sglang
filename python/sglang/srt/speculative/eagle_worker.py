@@ -700,6 +700,18 @@ class EAGLEWorker(TpModelWorker):
             self.target_worker.model_runner.attn_backend.update_mamba_state_after_mtp_verify(
                 accepted_length, self.target_worker.model_runner.model
             )
+        if self.target_worker.model_runner.jet_nemotron_config is not None:
+            accepted_length = (
+                torch.tensor(
+                    res.accept_length_per_req_cpu,
+                    device=logits_output.hidden_states.device,
+                    dtype=torch.int32,
+                )
+                + 1
+            )
+            self.target_worker.model_runner.attn_backend.update_jet_nemotron_state_after_mtp_verify(
+                accepted_length, self.target_worker.model_runner.model
+            )
 
         if batch.return_logprob:
             self.add_logprob_values(batch, res, logits_output)
